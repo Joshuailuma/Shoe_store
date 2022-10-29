@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/login_destination">
+
+    <fragment
+        android:id="@+id/login_destination"
+        android:name="com.example.android.shoestore.screens.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_login_to_welcome"
+            app:destination="@id/welcome_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcome_destination"
+        android:name="com.example.android.shoestore.screens.welcome.WelcomeFragment"
+        android:label="Welcome"
+        tools:layout="@layout/welcome_fragment">
+        <action
+            android:id="@+id/action_welcome_destination_to_instruction_destination"
+            app:destination="@id/instruction_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/instruction_destination"
+        android:name="com.example.android.shoestore.screens.instruction.InstructionFragment"
+        android:label="@string/instruction"
+        tools:layout="@layout/instruction_fragment">
+        <action
+            android:id="@+id/action_instruction_destination_to_shoeFragment"
+            app:destination="@id/shoeFragment"
+            app:enterAnim="@anim/slide_out_left"
+            app:popUpTo="@id/login_destination"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeFragment"
+        android:name="com.example.android.shoestore.screens.shoe.ShoeFragment"
+        android:label="@string/shoe_store"
+        tools:layout="@layout/fragment_shoe" >
+        <action
+            android:id="@+id/action_shoeFragment_to_shoeDetailsFragment"
+            app:destination="@id/shoeDetailsFragment" />
+        <action
+            android:id="@+id/action_shoeFragment_to_login_destination"
+            app:destination="@id/login_destination"
+            app:enterAnim="@anim/slide_out_left" />
+        <argument
+            android:name="shoeName"
+            app:argType="string" />
+        <argument
+            android:name="shoeCompany"
+            app:argType="string" />
+        <argument
+            android:name="shoeDescription"
+            app:argType="string" />
+        <argument
+            android:name="shoeSize"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeDetailsFragment"
+        android:name="com.example.android.shoestore.screens.shoe.ShoeDetailsFragment"
+        android:label="Shoe details"
+        tools:layout="@layout/fragment_shoe_details" >
+        <action
+            android:id="@+id/action_shoeDetailsFragment_to_shoeFragment"
+            app:destination="@id/shoeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popUpTo="@id/shoeFragment" />
+    </fragment>
+</navigation>
